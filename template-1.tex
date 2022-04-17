@@ -1,0 +1,49 @@
+%!TEX TS-program = xelatex
+\documentclass[a4paper,10pt]{letter}
+\usepackage{fontspec}      
+\setmainfont{Myriad Pro}
+
+\usepackage{ticket}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{xcolor}
+\definecolor{mygray}{RGB}{130, 130, 130}
+
+\unitlength=1mm
+\hoffset=-3mm
+\voffset=-3mm
+\ticketSize{60}{90}
+\ticketDistance{0}{0}
+\ticketNumbers{3}{3}
+
+% make your default ticket. \ticketdefault is somewhat like a background
+\renewcommand{\ticketdefault}{%
+  \put(5,50){\color{mygray} \rule{50mm}{1pt}}
+  \begin{tikzpicture}[very thick]
+    \draw [rounded corners=15, mygray] (0,0) rectangle ++(6,9);
+  \end{tikzpicture}
+}
+
+% now what do you like to put in your ticket
+\newcommand{\tombstonecard}[6]{\ticket{%
+    \put(-46,72){\makebox[0mm]{\LARGE #1}} % placecode; -45 = 15-60
+    \put(-46,64){\makebox[0mm]{\bfseries \LARGE #2}} % tombstone id
+    \put(-20,55){\makebox[0mm]{\includegraphics[height=30mm, width=30mm]{#3}}} % link to QR
+    \put(-55,41){\begin{minipage}[t]{50mm}
+                \centering
+                \Large \textbf{#4} \\ % cyrylic
+                \vspace*{1.7mm}
+                \Large {\color{mygray} #5} \\ % latin
+                \vspace*{1.7mm}
+                \ifx&#6&  % #1 is empty
+                \else     % #1 is nonempty
+                \Large \includegraphics[height=3.5mm]{images/tombstone.pdf}\ \textbf{#6} % date
+                \fi
+              \end{minipage}
+              }
+}}
+
+%% you can generate this part from a database!
+\begin{document}
+\include{data-1.tex}
+\end{document}
