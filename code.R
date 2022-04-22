@@ -12,7 +12,7 @@ if(length(to_install) > 0){
 setwd("/home/agricolamz/work/materials/2022_badges")
 library(tidyverse)
 
-df <- readxl::read_xls("data/Мглин_каталог (QR).xls")
+df <- readxl::read_xls("data/Мглин_каталог.xls")
 
 colnames(df) <- c("id", "name_ru", "name_tr", "date", "link")
 
@@ -27,10 +27,10 @@ df %>%
          id_d = str_remove_all(id, "^\\D{1,3}"),
          name_ru = str_replace_all(name_ru, "сын ", "сын~"),
          name_ru = str_replace_all(name_ru, "дочь ", "дочь~"),
-         name_ru = str_replace_all(name_ru, "сын(дочь) ", "сын(дочь)~"),
+         name_ru = str_replace_all(name_ru, "сын/дочь ", "сын/дочь~"),
          name_tr = str_replace_all(name_tr, "son of ", "son~of~"),
          name_tr = str_replace_all(name_tr, "daughter of ", "daughter~of~"),
-         name_tr = str_replace_all(name_tr, "son(daughter) of ", "son(daughter)~of~")) ->
+         name_tr = str_replace_all(name_tr, "son/daughter of ", "son/daughter~of~")) ->
   for_the_badges
 
 write_csv(for_the_badges, "data/for_the_badges.csv", na = "")

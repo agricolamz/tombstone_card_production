@@ -1,13 +1,12 @@
 %!TEX TS-program = xelatex
 \documentclass[a4paper,10pt]{letter}
 \usepackage{fontspec}      
-\setmainfont{Myriad Pro}
-
+\setmainfont[Path=fonts/, BoldFont=MyriadProBold]{MyriadProRegular}
 \usepackage{ticket}
 \usepackage{graphicx}
 \usepackage{tikz}
 \usepackage{xcolor}
-\definecolor{mygray}{RGB}{130, 130, 130}
+\definecolor{mygray}{RGB}{166, 166, 166}
 
 \unitlength=1mm
 \hoffset=-3mm
@@ -27,9 +26,9 @@
 
 % now what do you like to put in your ticket
 \newcommand{\tombstonecard}[9]{\ticket{%
-    \put(-67.5,73.5){\makebox[0mm]{\LARGE #1}} % placecode; -75 = 15-90
-    \put(-67.5,66.5){\makebox[0mm]{\bfseries \LARGE #2}} % tombstone id
-    \put(-22.5,54){\makebox[0mm]{\includegraphics[height=33mm, width=33mm]{#3}}} % link to QR
+    \put(-67.5,72){\makebox[0mm]{\LARGE #1}} % placecode; -75 = 15-90
+    \put(-67.5,64){\makebox[0mm]{\bfseries \LARGE #2}} % tombstone id
+    \put(-20,55){\makebox[0mm]{\includegraphics[height=30mm, width=30mm]{#3}}} % link to QR
     \put(-87,41){\begin{minipage}[t]{39mm}
                 \centering
                 \Large \textbf{#4} \\ % cyrylic
