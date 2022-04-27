@@ -6,7 +6,9 @@
 \usepackage{graphicx}
 \usepackage{tikz}
 \usepackage{xcolor}
-\definecolor{mygray}{RGB}{166, 166, 166}
+\definecolor{mygray}{RGB}{166, 166, 166} % a6a6a6
+\definecolor{lgray}{RGB}{204, 204, 204} % cccccc
+\definecolor{silver}{RGB}{229, 229, 229} % e5e5e5
 \hyphenpenalty=10000
 
 \unitlength=1mm
@@ -18,9 +20,9 @@
 
 % make your default ticket. \ticketdefault is somewhat like a background
 \renewcommand{\ticketdefault}{%
-  \put(5,50){\color{mygray} \rule{50mm}{1pt}}
+  \put(5,50){\color{lgray} \rule{50mm}{1pt}}
   \begin{tikzpicture}[very thick]
-    \draw [rounded corners=15, mygray] (0,0) rectangle ++(6,9);
+    \draw [rounded corners=15, lgray] (0,0) rectangle ++(6,9);
   \end{tikzpicture}
 }
 

@@ -44,7 +44,7 @@ for_the_badges %>%
 
 library(qrcode)
 library(magick)
-logo <- image_read_svg("images/logo.svg") %>% image_background('white') %>% image_border("white", "6x40")
+logo <- image_read_svg("images/logo.svg") %>% image_background('white') %>% image_border("white", "8x41")
 
 map(seq_along(qr_codes$id), function(i){
   path <- str_c("qr_codes/", qr_codes$id[i], ".png")
@@ -52,7 +52,7 @@ map(seq_along(qr_codes$id), function(i){
   plot(qr_code(qr_codes$link[i], ecl = "H"))
   dev.off()
   image_read(path) %>% 
-    image_composite(logo,  offset = "+117+117") %>%
+    image_composite(logo,  offset = "+120+120") %>% 
     image_crop(geometry_area(296, 296, 27, 27)) %>% 
     image_write(path)
 })
