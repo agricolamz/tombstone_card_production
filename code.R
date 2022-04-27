@@ -44,16 +44,38 @@ for_the_badges %>%
 
 library(qrcode)
 library(magick)
-logo <- image_read_svg("images/logo.svg") %>% image_background('white') %>% image_border("white", "8x41")
+logo <- image_read_svg("images/logo.svg") %>% image_background('white') %>% image_border("white", "8x42")
 
-map(seq_along(qr_codes$id), function(i){
-  path <- str_c("qr_codes/", qr_codes$id[i], ".png")
+qr_codes %>% 
+  filter(nchar(link) <= 24) ->
+  qr_codes_small
+
+map(seq_along(qr_codes_small$id), function(i){
+  path <- str_c("qr_codes/", qr_codes_small$id[i], ".png")
   png(path, width = 350, height = 350)
-  plot(qr_code(qr_codes$link[i], ecl = "H"))
+  plot(qr_code(qr_codes_small$link[i], ecl = "H"))
   dev.off()
   image_read(path) %>% 
     image_composite(logo,  offset = "+120+120") %>% 
     image_crop(geometry_area(296, 296, 27, 27)) %>% 
+    image_write(path)
+})
+
+# There is a different pattern for longer links
+
+qr_codes %>% 
+  filter(nchar(link) > 24) ->
+  qr_codes_big
+logo <- image_read_svg("images/logo.svg") %>% image_background('white') %>% image_border("white", "6x40")
+
+map(seq_along(qr_codes_big$id), function(i){
+  path <- str_c("qr_codes/", qr_codes_big$id[i], ".png")
+  png(path, width = 350, height = 350)
+  plot(qr_code(qr_codes_big$link[i], ecl = "H"))
+  dev.off()
+  image_read(path) %>% 
+    image_composite(logo,  offset = "+117+117") %>% 
+    image_crop(geometry_area(300, 300, 25, 25)) %>% 
     image_write(path)
 })
 
