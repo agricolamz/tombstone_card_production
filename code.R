@@ -71,7 +71,7 @@ logo <- image_read_svg("images/logo.svg") %>% image_background('white') %>% imag
 map(seq_along(qr_codes_big$id), function(i){
   path <- str_c("qr_codes/", qr_codes_big$id[i], ".png")
   png(path, width = 350, height = 350)
-  plot(qr_code(qr_codes_big$link[i], ecl = "H"))
+  plot(qr_code('https://sfira.ru/t/MGL10', ecl = "H"))
   dev.off()
   image_read(path) %>% 
     image_composite(logo,  offset = "+117+117") %>% 
