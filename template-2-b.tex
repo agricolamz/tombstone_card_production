@@ -1,0 +1,66 @@
+%!TEX TS-program = xelatex
+\documentclass[a4paper,10pt]{letter}
+\usepackage{fontspec}      
+\setmainfont[Path=fonts/, BoldFont=MyriadProBold]{MyriadProRegular}
+\usepackage{ticket}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{xcolor}
+\definecolor{white}{RGB}{255, 255, 255} 
+\definecolor{mygray}{RGB}{166, 166, 166} % a6a6a6
+\definecolor{lgray}{RGB}{204, 204, 204} % cccccc
+\definecolor{silver}{RGB}{229, 229, 229} % e5e5e5
+\hyphenpenalty=10000
+
+\unitlength=1mm
+\hoffset=-13mm
+\voffset=-15mm
+\ticketSize{90}{90}
+\ticketDistance{3}{3}
+\ticketNumbers{2}{3}
+
+% make your default ticket. \ticketdefault is somewhat like a background
+\renewcommand{\ticketdefault}{%
+  % \put(5,50){\color{lgray} \rule{80mm}{1pt}}
+  % \put(45,5){\color{lgray} \rule{1pt}{40mm}}
+  \begin{tikzpicture}[very thick]
+%    \draw [rounded corners=15, lgray, draw opacity=0] (0,0) rectangle ++(9,9);
+    \draw [rounded corners=15, lgray] (0,0) rectangle ++(9,9);
+  \end{tikzpicture}
+}
+
+% now what do you like to put in your ticket
+\newcommand{\tombstonecard}[9]{\ticket{%
+    % \put(-67.5,72){\makebox[0mm]{\LARGE #1}} % placecode; -75 = 15-90
+    % \put(-67.5,64){\makebox[0mm]{\bfseries \LARGE #2}} % tombstone id
+    % \put(-20,55){\makebox[0mm]{\includegraphics[height=30mm, width=30mm]{#3}}} % link to QR
+    % \put(-87,41){\begin{minipage}[t]{39mm}
+    %             \centering
+    %             \Large \textbf{#4} \\ % cyrylic
+    %             \vspace*{1.7mm}
+    %             \Large {\color{mygray} #6} \\ % latin
+    %             \vspace*{1.7mm}
+    %             \ifx&#6&  % #1 is empty
+    %             \else     % #1 is nonempty
+    %             \Large \includegraphics[height=4mm]{images/tombstone.pdf}\ \textbf{#8} % date
+    %             \fi
+    %           \end{minipage}
+    %           }
+    %   \put(-42,41){\begin{minipage}[t]{39mm}
+    %             \centering
+    %             \Large \textbf{#5} \\ % cyrylic
+    %             \vspace*{1.7mm}
+    %             \Large {\color{mygray} #7} \\ % latin
+    %             \vspace*{1.7mm}
+    %             \ifx&#6&  % #1 is empty
+    %             \else     % #1 is nonempty
+    %             \Large \includegraphics[height=4mm]{images/tombstone.pdf}\ \textbf{#9} % date
+    %             \fi
+    %           \end{minipage}
+    %           }
+}}
+
+%% you can generate this part from a database!
+\begin{document}
+\include{data-2.tex}
+\end{document}

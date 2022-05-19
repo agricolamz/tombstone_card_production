@@ -15,46 +15,33 @@
 \unitlength=1mm
 \hoffset=-13mm
 \voffset=-15mm
-\ticketSize{90}{90}
+\ticketSize{60}{90}
 \ticketDistance{3}{3}
-\ticketNumbers{2}{3}
+\ticketNumbers{3}{3}
 
 % make your default ticket. \ticketdefault is somewhat like a background
 \renewcommand{\ticketdefault}{%
-  \put(5,50){\color{lgray} \rule{80mm}{1pt}}
-  \put(45,5){\color{lgray} \rule{1pt}{40mm}}
+  \put(5,50){\color{lgray} \rule{50mm}{1pt}}
   \begin{tikzpicture}[very thick]
-%    \draw [rounded corners=15, lgray, draw opacity=0] (0,0) rectangle ++(9,9);
-    \draw [rounded corners=15, lgray] (0,0) rectangle ++(9,9);
+    \draw [rounded corners=15, lgray, draw opacity=0] (0,0) rectangle ++(6,9);
+%    \draw [rounded corners=15, lgray] (0,0) rectangle ++(6,9);
   \end{tikzpicture}
 }
 
 % now what do you like to put in your ticket
-\newcommand{\tombstonecard}[9]{\ticket{%
-    \put(-67.5,72){\makebox[0mm]{\LARGE #1}} % placecode; -75 = 15-90
-    \put(-67.5,64){\makebox[0mm]{\bfseries \LARGE #2}} % tombstone id
+\newcommand{\tombstonecard}[6]{\ticket{%
+    \put(-46,72){\makebox[0mm]{\LARGE #1}} % placecode; -45 = 15-60
+    \put(-46,64){\makebox[0mm]{\bfseries \LARGE #2}} % tombstone id
     \put(-20,55){\makebox[0mm]{\includegraphics[height=30mm, width=30mm]{#3}}} % link to QR
-    \put(-87,41){\begin{minipage}[t]{39mm}
+    \put(-55,41){\begin{minipage}[t]{50mm}
                 \centering
                 \Large \textbf{#4} \\ % cyrylic
                 \vspace*{1.7mm}
-                \Large {\color{mygray} #6} \\ % latin
+                \Large {\color{mygray} #5} \\ % latin
                 \vspace*{1.7mm}
                 \ifx&#6&  % #1 is empty
                 \else     % #1 is nonempty
-                \Large \includegraphics[height=4mm]{images/tombstone.pdf}\ \textbf{#8} % date
-                \fi
-              \end{minipage}
-              }
-      \put(-42,41){\begin{minipage}[t]{39mm}
-                \centering
-                \Large \textbf{#5} \\ % cyrylic
-                \vspace*{1.7mm}
-                \Large {\color{mygray} #7} \\ % latin
-                \vspace*{1.7mm}
-                \ifx&#6&  % #1 is empty
-                \else     % #1 is nonempty
-                \Large \includegraphics[height=4mm]{images/tombstone.pdf}\ \textbf{#9} % date
+                \Large \includegraphics[height=3.5mm]{images/tombstone.pdf}\ \textbf{#6} % date
                 \fi
               \end{minipage}
               }
@@ -62,5 +49,5 @@
 
 %% you can generate this part from a database!
 \begin{document}
-\include{data-2.tex}
+\include{data-1.tex}
 \end{document}
