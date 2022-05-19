@@ -65,7 +65,7 @@ map(seq_along(qr_codes_small$id), function(i){
 
 qr_codes %>% 
   filter(nchar(link) > 24) ->
-  qr_codes_big
+    qr_codes_big
 logo <- image_read_svg("images/logo.svg") %>% image_background('white') %>% image_border("white", "6x40")
 
 map(seq_along(qr_codes_big$id), function(i){
