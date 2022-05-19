@@ -108,6 +108,23 @@ for_the_badges %>%
   pull(text) %>% 
   write_lines("data-2.tex")
 
+# create 2-tomb data ------------------------------------------------------
+for_the_badges %>% 
+  filter(length == 3) %>% 
+  group_by(id_l, id_d) %>% 
+  mutate(name_ru = str_c(name_ru, collapse= "}{"),  # merge multiple lines
+         name_tr = str_c(name_tr, collapse= "}{"),
+         date = str_c(date, collapse= "}{")) %>% 
+  distinct() %>% 
+  mutate(text = str_c("\\tombstonecardf{", id_l, "}",
+                      "{", id_d, "}",
+                      "{qr_codes/", id, ".png}",
+                      "{", name_ru, "}",
+                      "{", name_tr, "}",
+                      "{", date, "}")) %>% 
+  pull(text) %>% 
+  write_lines("data-2.tex")
+
 # compile pdfs ------------------------------------------------------------
 name_prefix <- "MGL"
 
