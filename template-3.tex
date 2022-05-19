@@ -8,7 +8,7 @@
 \usepackage{xcolor}
 \definecolor{white}{RGB}{255, 255, 255} 
 \definecolor{mygray}{RGB}{130, 130, 130} % a6a6a6
-\definecolor{lgray}{RGB}{166, 166, 166} % cccccc
+\definecolor{lgray}{RGB}{166, 166, 166}
 \definecolor{silver}{RGB}{229, 229, 229} % e5e5e5
 \hyphenpenalty=10000
 
@@ -23,13 +23,13 @@
 \renewcommand{\ticketdefault}{%
   \put(5,50){\color{lgray} \rule{50mm}{1pt}}
   \begin{tikzpicture}[very thick]
-    \draw [rounded corners=15, lgray, draw opacity=0] (0,0) rectangle ++(6,9);
-%    \draw [rounded corners=15, lgray] (0,0) rectangle ++(6,9);
+%    \draw [rounded corners=15, lgray, draw opacity=0] (0,0) rectangle ++(6,9);
+    \draw [rounded corners=15, lgray] (0,0) rectangle ++(6,9);
   \end{tikzpicture}
 }
 
 % now what do you like to put in your ticket
-\newcommand{\tombstonecard}[6]{\ticket{%
+\newcommand{\tombstonecardf}[6]{\ticket{%
     \put(-46,72){\makebox[0mm]{\LARGE #1}} % placecode; -45 = 15-60
     \put(-46,64){\makebox[0mm]{\bfseries \LARGE #2}} % tombstone id
     \put(-20,55){\makebox[0mm]{\includegraphics[height=30mm, width=30mm]{#3}}} % link to QR
@@ -47,7 +47,36 @@
               }
 }}
 
+\newcommand{\tombstonecards}[6]{\ticket{%
+    \put(-55,72){\begin{minipage}[t]{50mm}
+                \centering
+                \Large \textbf{#1} \\ % cyrylic
+                \vspace*{1.7mm}
+                \Large {\color{mygray} #2} \\ % latin
+                \vspace*{1.7mm}
+                \ifx&#3&  % #1 is empty
+                \else     % #1 is nonempty
+                \Large \includegraphics[height=3.5mm]{images/tombstone.pdf}\ \textbf{#3} % date
+                \fi
+              \end{minipage}
+              }
+    \put(-55,41){\begin{minipage}[t]{50mm}
+                \centering
+                \Large \textbf{#4} \\ % cyrylic
+                \vspace*{1.7mm}
+                \Large {\color{mygray} #5} \\ % latin
+                \vspace*{1.7mm}
+                \ifx&#6&  % #1 is empty
+                \else     % #1 is nonempty
+                \Large \includegraphics[height=3.5mm]{images/tombstone.pdf}\ \textbf{#6} % date
+                \fi
+              \end{minipage}
+              }
+}}
+
+\newcommand{\tombstonecards}[12]
+
 %% you can generate this part from a database!
 \begin{document}
-\include{data-1.tex}
+
 \end{document}
